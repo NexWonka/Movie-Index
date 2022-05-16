@@ -6,7 +6,7 @@
 	<div class="w-full">
 		<div class="flex flex-wrap justify-center items-center gap-5 py-10 px-10">
 			<input class="w-1/2 h-14 px-10 rounded-full" type="text" placeholder="Search Movies..." />
-			<button id="search" class="p-3 rounded-xl font-bold hover:text-white transition" type="submit"
+			<button id="search" class="p-3 rounded-xl hover:text-white transition" type="submit"
 				>Search</button
 			>
 		</div>
@@ -14,7 +14,7 @@
 			{#each $datas as movies}
 				<div>
 					<div class="flex flex-wrap bg-red-500 p-5 items-center justify-center rounded-xl">
-						<img src={movies.thumbnailUrl} alt="" />
+						<img class="rounded" src={movies.thumbnailUrl} alt="" />
 						<h1>{movies.title}</h1>
 					</div>
 				</div>

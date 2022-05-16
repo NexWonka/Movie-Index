@@ -1,10 +1,12 @@
+import axios from "axios";
 import { writable } from "svelte/store";
 
 export const datas = writable([]);
 
 const getData = async () => {
-    const response = await fetch('https://jsonplaceholder.typicode.com/photos');
-    const data = await response.json();
-    return datas.set(data);
+    const response = await axios.get("https://jsonplaceholder.typicode.com/photos");
+    const data = response.data;
+    return datas.set(data)
 }
+
 getData();
