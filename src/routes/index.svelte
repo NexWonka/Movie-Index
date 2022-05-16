@@ -1,5 +1,10 @@
 <script>
+	import { onMount } from 'svelte';
 	import { datas } from './getData';
+
+	onMount(async () => {
+		await datas;
+	});
 </script>
 
 <div class="flex flex-wrap flex-column justify-center" id="container">
@@ -13,10 +18,14 @@
 		<div class="grid grid-cols-8 text-white gap-5 mx-10">
 			{#each $datas as movies}
 				<div>
-					<div class="flex flex-wrap bg-red-500 p-5 items-center justify-center rounded-xl">
+					<div class="flex flex-wrap bg-red-500 h-full p-5 items-start justify-center rounded-xl">
 						<img class="rounded" src={movies.thumbnailUrl} alt="" />
 						<h1>{movies.title}</h1>
 					</div>
+				</div>
+			{:else}
+				<div class="h-screen">
+					<h1 class="text-white font-bold text-3xl">LOADING...</h1>
 				</div>
 			{/each}
 		</div>
