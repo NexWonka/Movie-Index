@@ -6,11 +6,11 @@
 	<title>Movies Index</title>
 </svelte:head>
 
-<div class="container flex flex-wrap p-5 justify-between" id="nav_container">
+<div class="flex p-5 justify-between" id="nav_container">
 	<div>
 		<img src="" alt="Movies" />
 	</div>
-	<div class="flex flex-wrap gap-5" id="nav_page">
+	<div class="flex gap-5" id="nav_page">
 		<a href="#">Home</a>
 		<a href="#">Categories</a>
 		<a href="#">Popular</a>
