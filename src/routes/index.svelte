@@ -1,38 +1,79 @@
 <script>
 	import { onMount } from 'svelte';
+	import { writable } from 'svelte/store';
 	import { datas } from './getData';
+	import axios from 'axios';
+
+	let query = '';
+	let resQuery = writable([]);
 
 	onMount(async () => {
 		await datas;
 	});
+
+	async function search() {
+		const response = await axios.get(`https://imdb-api.com/en/API/SearchTitle/k_wu3sr107/${query}`);
+		const data = response.data.results;
+		return resQuery.set(data);
+	}
 </script>
 
 <div class="flex flex-wrap flex-column justify-center py-10" id="container">
 	<div class="w-full">
 		<h1 class="font-bold text-8xl text-white text-center">MOVIE INDEX</h1>
 		<div class="flex flex-wrap justify-center items-center gap-5 py-10 px-10">
-			<input class="w-1/2 h-14 px-10 rounded-full" type="text" placeholder="Search Movies..." />
-			<button id="search" class="p-3 rounded-xl hover:text-white transition" type="submit"
-				>Search</button
+			<input
+				class="w-1/2 h-14 px-10 rounded-full"
+				type="text"
+				placeholder="Search Movies..."
+				bind:value={query}
+			/>
+			<button
+				id="search"
+				class="p-3 rounded-xl hover:text-white transition"
+				type="submit"
+				on:click={search}>Search</button
 			>
 		</div>
-		<div class="grid grid-cols-8 gap-5 mx-10">
-			{#each $datas as movies}
-				<div>
-					<div class="flex flex-col bg-white p-2 items-center justify-start rounded-xl text-center">
-						<img class="rounded-xl" src={movies.image} alt="" />
-						<h1 id="movieTitle" class="font-bold">{movies.title}</h1>
-						<p id="movieYear" class="mb-5">({movies.year})</p>
-						<p class="self-start text-xs">Rating {movies.imDbRating} ({movies.imDbRatingCount})</p>
-						<p class="self-start text-xs">Rank {movies.rank}</p>
-						<p class="self-start text-xs">Popularity {movies.rankUpDown}</p>
+		<div class="grid xs:grid-cols-1 sm:grid-cols-3 md:grid-cols-6 xl:grid-cols-8 gap-5 mx-10">
+			{#if query === ""}
+				{#each $datas as movies}
+					<div>
+						<div
+							class="flex flex-col bg-white p-2 items-center justify-start rounded-xl text-center"
+						>
+							<img class="rounded-xl" src={movies.image} alt="" />
+							<h1 id="movieTitle" class="font-bold">{movies.title}</h1>
+							<p id="movieYear" class="mb-5">({movies.year})</p>
+							<p class="self-start text-xs">
+								Rating {movies.imDbRating} ({movies.imDbRatingCount})
+							</p>
+							<p class="self-start text-xs">Rank {movies.rank}</p>
+							<p class="self-start text-xs">Popularity {movies.rankUpDown}</p>
+						</div>
 					</div>
-				</div>
+				{:else}
+					<div class="h-screen">
+						<h1 class="text-white font-bold text-3xl">LOADING...</h1>
+					</div>
+				{/each}
 			{:else}
-				<div class="h-screen">
-					<h1 class="text-white font-bold text-3xl">LOADING...</h1>
-				</div>
-			{/each}
+				{#each $resQuery as movies}
+					<div>
+						<div
+							class="flex flex-col bg-white p-2 items-center justify-start rounded-xl text-center"
+						>
+							<img class="rounded-xl" src={movies.image} alt="" />
+							<h1 id="movieTitle" class="font-bold">{movies.title}</h1>
+							<p id="movieYear" class="mb-5">{movies.description}</p>
+						</div>
+					</div>
+				{:else}
+					<div class="h-screen">
+						<h1 class="text-white font-bold text-3xl">LOADING...</h1>
+					</div>
+				{/each}
+			{/if}
 		</div>
 	</div>
 </div>

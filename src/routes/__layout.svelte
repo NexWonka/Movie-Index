@@ -10,20 +10,17 @@
 	<div>
 		<img src="" alt="Movies" />
 	</div>
-	<div class="flex gap-5" id="nav_page">
-		<a href="#">Home</a>
-		<a href="#">Categories</a>
-		<a href="#">Popular</a>
-		<a href="#">Trending</a>
+	<div class="flex gap-5 transition" id="nav_page">
+		<a class="hover:text-white transition" href="#">Home</a>
+		<a class="hover:text-white transition" href="#">Categories</a>
+		<a class="hover:text-white transition" href="#">Popular</a>
+		<a class="hover:text-white transition" href="#">Coming Soon</a>
 	</div>
 </div>
 <slot />
 
 <style>
 	#nav_container {
-		background: #FF8C32;
-	}
-	#nav_page{
-		color: #06113C;
+		background: #ff8c32;
 	}
 </style>
