@@ -11,10 +11,9 @@
 		<img src="" alt="Movies" />
 	</div>
 	<div class="flex gap-5 transition" id="nav_page">
-		<a class="hover:text-white transition" href="http://localhost:3000/">Home</a>
-		<a class="hover:text-white transition" href="#">Categories</a>
-		<a class="hover:text-white transition" href="#">Popular</a>
-		<a class="hover:text-white transition" href="#">Coming Soon</a>
+		<a class="hover:text-white transition" href="/">Home</a>
+		<a class="hover:text-white transition" href="/popular">Popular</a>
+		<a class="hover:text-white transition" href="/soon">Coming Soon</a>
 	</div>
 </div>
 
