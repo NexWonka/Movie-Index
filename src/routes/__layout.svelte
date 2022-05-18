@@ -4,12 +4,10 @@
 
 <svelte:head>
 	<title>Movies Index</title>
+	<link rel="shortcut icon" href="/icon.svg" />
 </svelte:head>
 
-<div class="flex p-5 justify-between" id="nav_container">
-	<div>
-		<img src="" alt="Movies" />
-	</div>
+<div class="flex p-5 justify-center items-center" id="nav_container">
 	<div class="flex gap-5 transition" id="nav_page">
 		<a class="hover:text-white transition" href="/">Home</a>
 		<a class="hover:text-white transition" href="/popular">Popular</a>
@@ -17,11 +15,11 @@
 	</div>
 </div>
 
-<div class="flex flex-wrap flex-column justify-center py-10" id="container">
+<div class="flex flex-wrap flex-column justify-center items-center py-10" id="container">
 	<slot />
 </div>
 
-<div class="flex p-3 justify-end" id="nav_container">
+<div class="flex p-3" id="nav_container">
 	<div class="flex gap-5 text-sm" id="nav_page">
 		<p class="italic">
 			Made by <a href="https://github.com/NexWonka" class="not-italic font-bold">NexWonka</a>
